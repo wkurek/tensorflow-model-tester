@@ -1,0 +1,15 @@
+{
+  "name": "model-tester",
+  "version": "1.0.0",
+  "description": "Program for testing neural network model and generating html test report.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "wkurek",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^2.6.1",
+    "yargs": "^13.2.4"
+  }
+}
