@@ -77,15 +77,25 @@ function extractProbability(classProbability) {
   return probability * 100;
 }
 
+function isUnixPath(path) {
+  const mntRegex = /\/mnt\/[a-z]\//;
+
+  return mntRegex.test(path) && path.length > 7;
+}
+
 function transformPathToWin(path) {
-  const mnt = path.slice(0, 7);
-  const discLetter = mnt.charAt(5).toUpperCase();
+  if (isUnixPath(path)) {
+    const mnt = path.slice(0, 7);
+    const discLetter = mnt.charAt(5).toUpperCase();
 
-  let dirPath = path.slice(7);
-  dirPath = dirPath.replace("/", "\\");
+    let dirPath = path.slice(7);
+    dirPath = dirPath.replace("/", "\\");
 
-  const winPath = `${discLetter}:\\${dirPath}`;
-  return winPath;
+    const winPath = `${discLetter}:\\${dirPath}`;
+    return winPath;
+  } else {
+    return path;
+  }
 }
 
 function generateReportPath(outputDir) {
