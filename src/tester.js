@@ -9,9 +9,13 @@ function testModel(graphPath, labelsPath, imagesDir, outputDir) {
       throw err;
     }
 
+    console.log(`Testing model with ${files.length} images.`);
+
     const data = { date: new Date(), images: [] };
 
     files.forEach(filename => {
+      console.log(`Testing model with ${filename}`);
+
       const imagePath = join(imagesDir, filename);
       const timestamp = new Date().getTime();
 
