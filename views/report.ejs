@@ -3,13 +3,46 @@
   <head>
     <meta charset="UTF-8" />
     <title>Model Test Report</title>
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
   </head>
   <body>
-    <h1><%= date %></h1>
-    <div>
+    <div class="container">
+      <div class="row my-2 p-2 border border-primary rounded">
+        <div class="col-12 text-center">
+          <h2>Report generated at: <%= date %></h2>
+          <h3>Model tested with <%= images.length %> images.</h3>
+        </div>
+      </div>
       <% images.forEach(function(image) { %>
-      <span><%= image.path %></span>
-
+      <div class="row my-2 p-2 border border-primary rounded">
+        <div class="col-md-6 text-center">
+          <img
+            src="<%= image.path %>"
+            class="img-fluid rounded"
+            alt="tested image"
+          />
+          <p><i><%= image.filename %></i></p>
+        </div>
+        <div class="col-md-6">
+          <div class="alert alert-primary" role="alert">
+            <% image.classProbabilities.forEach(function(classProbability) { %>
+            <div>
+              <strong><%= classProbability.className %>: </strong><%=
+              classProbability.probability %><small>%</small>
+            </div>
+            <% }); %>
+            <div>
+              <strong>time: </strong><%= image.time %><small> sec.</small>
+            </div>
+          </div>
+        </div>
+      </div>
       <% }); %>
     </div>
   </body>

@@ -1,5 +1,5 @@
 const yargs = require("yargs");
-const { test } = require("./src/tester");
+const { testModel } = require("./src/tester");
 
 const argv = yargs
   .option("graph", {
@@ -29,4 +29,4 @@ const argv = yargs
   .help()
   .alias("help", "h").argv;
 
-test(argv.graph, argv.labels, argv.images, argv.output_dir);
+testModel(argv.graph, argv.labels, argv.images, argv.output_dir);
